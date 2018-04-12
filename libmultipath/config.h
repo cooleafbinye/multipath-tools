@@ -204,6 +204,7 @@ struct config {
 	vector elist_wwid;
 	vector elist_device;
 	vector elist_property;
+	int print_foreign;
 };
 
 extern struct udev * udev;

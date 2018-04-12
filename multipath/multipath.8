@@ -25,7 +25,7 @@ multipath \- Device mapper target autoconfig.
 .RB [\| \-b\ \c
 .IR bindings_file \|]
 .RB [\| \-d \|]
-.RB [\| \-h | \-l | \-ll | \-f | \-t | \-F | \-B | \-c | \-C | \-q | \-r | \-i | \-a | \-u | \-U | \-w | \-W \|]
+.RB [\| \-h | \-l | \-ll | \-f | \-t | \-F | \-B | \-c | \-C | \-q | \-r | \-i | \-a | \-u | \-U | \-w | \-W | -o \|]
 .RB [\| \-p\ \c
 .IR failover | multibus | group_by_serial | group_by_prio | group_by_node_name \|]
 .RB [\| \-R\ \c
@@ -140,6 +140,10 @@ Remove the WWID for the specified device from the WWIDs file.
 .TP
 .B \-W
 Reset the WWIDs file to only include the current multipath devices.
+.
+.TP
+.B \-o
+Include detected "foreign" multipaths in \fB-l\fR or \fB-ll\fR output.
 .
 .TP
 .BI \-p " policy"

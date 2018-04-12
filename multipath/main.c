@@ -262,7 +262,8 @@ get_dm_mpvec (enum mpath_cmds cmd, vector curmp, vector pathvec, char * refwwid)
 	if (cmd == CMD_LIST_SHORT || cmd == CMD_LIST_LONG) {
 		struct config *conf = get_multipath_config();
 
-		print_foreign_topology(conf->verbosity);
+		if (conf->print_foreign)
+			print_foreign_topology(conf->verbosity);
 		put_multipath_config(conf);
 	}
 
@@ -469,7 +470,8 @@ configure (struct config *conf, enum mpath_cmds cmd,
 		print_all_paths(pathvec, 1);
 
 	get_path_layout(pathvec, 0);
-	foreign_path_layout();
+	if (conf->print_foreign)
+		foreign_path_layout();
 
 	if (get_dm_mpvec(cmd, curmp, pathvec, refwwid))
 		goto out;
@@ -668,7 +670,7 @@ main (int argc, char *argv[])
 		exit(1);
 	multipath_conf = conf;
 	conf->retrigger_tries = 0;
-	while ((arg = getopt(argc, argv, ":adcChl::FfM:v:p:b:BrR:itquUwW")) != EOF ) {
+	while ((arg = getopt(argc, argv, ":adcChl::FfM:v:p:b:BrR:itquUwWo")) != EOF ) {
 		switch(arg) {
 		case 1: printf("optarg : %s\n",optarg);
 			break;
@@ -757,6 +759,9 @@ main (int argc, char *argv[])
 			break;
 		case 'R':
 			retries = atoi(optarg);
+			break;
+		case 'o':
+			conf->print_foreign = 1;
 			break;
 		case ':':
 			fprintf(stderr, "Missing option argument\n");

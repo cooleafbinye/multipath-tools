@@ -623,6 +623,7 @@ load_config (char * file)
 	conf->uev_wait_timeout = DEFAULT_UEV_WAIT_TIMEOUT;
 	conf->disable_changed_wwids = DEFAULT_DISABLE_CHANGED_WWIDS;
 	conf->remove_retries = 0;
+	conf->print_foreign = 0;
 
 	/*
 	 * preload default hwtable
